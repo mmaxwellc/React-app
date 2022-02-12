@@ -1,36 +1,13 @@
 version: 0.2
 
 phases:
-  install:
-    commands:
-      - echo update npm...
-      - npm install -g n
-      - n latest
-      - npm update -g npm
-      - echo node -v
-      - node -v
-      - echo npm -v
-      - npm -v
-      - echo install yarn...
-      - npm install -g yarn
-      - echo yarn -v
-      - yarn -v
-  pre_build:
-    commands:
-      - echo Installing source NPM dependencies...
-      - yarn install
   build:
     commands:
-      - echo Build started on `date`
-      - echo Compiling the Node.js code
-      - yarn run build
+      - echo Entered the build phase...
+      - mvn clean package  
   post_build:
     commands:
-      - echo Build completed on `date`
-      - echo Distributing to S3...
-
+      - echo build completed successfully...
 artifacts:
-  # include all files required to run application
-  # we include only the static build files
   files:
-    - '**/*'
+     - '**/*'
